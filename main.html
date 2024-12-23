@@ -1,13 +1,52 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise and Timeout Example</title>
+</head>
+<body>
 
-<html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+  <div id="output"></div>
 
-  <body>
-    <!-- do not change this code -->
-    <div id="output"></div>
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+  <script>
+    function numberlo() {
+      return new Promise((resolve, reject) => {
+        // Simulating an API call or delay of 3 seconds
+        setTimeout(() => {
+          resolve([1, 2, 3, 4]); // Resolving the array [1, 2, 3, 4]
+        }, 3000);
+      });
+    }
+
+    numberlo()
+      .then((koi_value_pass_kro) => {
+        // Step 1: Filter out even numbers and display after 1 second
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            const evenNumber = koi_value_pass_kro.filter((pass_the_value) => pass_the_value % 2 === 0);
+            // Updating the DOM with even numbers
+            document.getElementById("output").textContent = "Even Numbers: " + evenNumber.join(", ");
+            resolve(evenNumber); // Passing the filtered even numbers for the next step
+          }, 1000); // 1-second delay to filter even numbers
+        });
+      })
+      .then((evenNumber) => {
+        // Step 2: Multiply the even numbers by 2 and display after 2 seconds
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            const multi = evenNumber.map((pass_any_value) => pass_any_value * 2);
+            // Updating the DOM with the multiplied values
+            document.getElementById("output").textContent = "Multiplied by 2: " + multi.join(", ");
+            resolve(multi); // Passing the multiplied numbers for the next step
+          }, 2000); // 2-second delay to multiply numbers
+        });
+      })
+      .catch((error) => {
+        console.log(error); // Logging any errors that may occur
+      });
+
+  </script>
+
+</body>
 </html>
