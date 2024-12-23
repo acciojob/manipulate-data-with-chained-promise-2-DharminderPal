@@ -25,7 +25,7 @@ resolve(evenNumber);
 .then((multiply)=>{
 return  new Promise((resolve,reject)=>{
 setTimeout(()=>{
-const multi = evenNumber.map((pass_any_value)=pass_any_value*2);
+const multi = evenNumber.map((pass_any_value)=>pass_any_value*2);
 document.getElementById("output").textContent=multi.join(", ");
 resolve(multi);
 },2000)
