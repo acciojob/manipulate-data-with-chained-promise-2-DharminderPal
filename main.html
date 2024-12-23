@@ -25,9 +25,10 @@
 		.then(finalNumbers => {
   document.getElementById('output').textContent = finalNumbers.join(', ');
 })
-		.catch((error)=>{
-			console.log(error);
-		})
+	  .catch(error => {
+    // Handle any errors
+    console.error('An error occurred:', error);
+  });
     </script>
 </body>
 </html>
