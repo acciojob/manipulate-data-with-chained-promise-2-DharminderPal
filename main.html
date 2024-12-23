@@ -27,6 +27,7 @@
             const evenNumber = koi_value_pass_kro.filter((pass_the_value) => pass_the_value % 2 === 0);
             // Updating the DOM with even numbers
             document.getElementById("output").textContent = "Even Numbers: " + evenNumber.join(", ");
+            console.log('Filtered Even Numbers:', evenNumber);  // Debugging
             resolve(evenNumber); // Passing the filtered even numbers for the next step
           }, 1000); // 1-second delay to filter even numbers
         });
@@ -38,6 +39,7 @@
             const multi = evenNumber.map((pass_any_value) => pass_any_value * 2);
             // Updating the DOM with the multiplied values
             document.getElementById("output").textContent = "Multiplied by 2: " + multi.join(", ");
+            console.log('Multiplied Even Numbers:', multi);  // Debugging
             resolve(multi); // Passing the multiplied numbers for the next step
           }, 2000); // 2-second delay to multiply numbers
         });
@@ -45,7 +47,6 @@
       .catch((error) => {
         console.log(error); // Logging any errors that may occur
       });
-
   </script>
 
 </body>
