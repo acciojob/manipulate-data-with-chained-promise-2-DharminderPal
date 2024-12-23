@@ -1,35 +1,32 @@
-function numberlo(){
-
-return new Promise((resolve,reject)=>{
-// document.getElementById("output")
-setTimeout(()=>{
-resolve([1,2,3,4])
-},3000)
-});
+function getNumbers() {
+  // Returns a promise that resolves with an array of numbers
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([1, 2, 3, 4]);
+    }, 3000);
+  });
 }
 
-
-
-numberlo()
-.then((koi_value_pass_kro)=>{
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-const evenNumber= koi_value_pass_kro.filter((pass_the_value)=>pass_the_value % 2 === 0);
-document.getElementById("output").textContent =evenNumber.join(", ");
-resolve(evenNumber);
-},1000)
-    })
-})
-
-.then((multiply)=>{
-return  new Promise((resolve,reject)=>{
-setTimeout(()=>{
-const multi = evenNumber.map((pass_any_value)=pass_any_value*2);
-document.getElementById("output").textContent=multi.join(", ");
-resolve(multi);
-},2000)
-});
-})
-.catch((error)=>{
-console.log(error);
-})
+getNumbers()
+  .then((numbers) => {
+    // First promise: filter out odd numbers after 1 second
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const evenNumbers = numbers.filter((num) => num % 2 === 0);
+        document.getElementById("output").textContent = evenNumbers.join(", ");
+        resolve(evenNumbers);
+      }, 1000); // Delay of 1 second
+    });
+  })
+  .then((evenNumbers) => {
+    // Second promise: multiply even numbers by 2 after 2 seconds
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const multipliedNumbers = evenNumbers.map((num) => num * 2);
+        document.getElementById("output").textContent =
+          multipliedNumbers.join(", ");
+        resolve(multipliedNumbers);
+      }, 2000); // Delay of 2 seconds
+    });
+  })
+  .catch((err) => console.error(err));
